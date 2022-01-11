@@ -15,3 +15,5 @@ afterEach(() => server.resetHandlers());
 
 // Clean up after the tests are finished.
 afterAll(() => server.close());
+
+// strings and numbers can use the toBe() matcher, but arrays and objects use the toEqual() matcher.
