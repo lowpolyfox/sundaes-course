@@ -1,7 +1,6 @@
-import { render, screen, waitFor } from "./../../../test-utils/testing-library-utils";
+import { render, screen } from "./../../../test-utils/testing-library-utils";
 
 import Options from "./../Options";
-import { OrderDetailsProvider } from './../../../contexts/OrderDetails';
 
 describe("order entry displays correct images", () => {
   test("displays correct image for each scoop option from server", async () => {
