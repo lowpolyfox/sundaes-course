@@ -5,7 +5,7 @@ import {
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import SummaryForm from "./../SummaryForm";
+import SummaryForm from "../SummaryForm";
 
 // LEARNING: The test component must be rendered IN EVERY test, not on top of describe statements
 // userEvents simulate user actions in a more realistic way than fireEvent

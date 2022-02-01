@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { Button, Form, Popover, OverlayTrigger } from "react-bootstrap";
 
-const SummaryForm = () => {
+const SummaryForm = ({ setOrderPhase }) => {
   const [tcChecked, setTcChecked] = useState(false);
 
   const handleTcChange = (e) => {
     setTcChecked(e.target.checked);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setOrderPhase("confirmation");
   };
 
   const popover = (
@@ -34,8 +39,13 @@ const SummaryForm = () => {
           />
         </Form.Group>
 
-        <Button variant="primary" type="submit" disabled={!tcChecked}>
-          Place order
+        <Button
+          variant="primary"
+          type="submit"
+          disabled={!tcChecked}
+          onClick={handleSubmit}
+        >
+          Confirm Order
         </Button>
       </Form>
     </>
