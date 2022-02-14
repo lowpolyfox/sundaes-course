@@ -6,9 +6,15 @@ const OrderSummary = ({ setOrderPhase }) => {
   let scoopItems = [];
   let toppingItems = [];
 
+  let scoopsList = null;
   for (const [key, value] of orderDetails.scoops.entries()) {
     scoopItems.push(`${value} ${key}`);
   }
+
+  scoopsList = scoopItems.map((item) => (
+    <li key={item}>{item}</li>
+  ));
+
 
   let toppingsRender = null;
   if (orderDetails.toppings.size > 0) {
@@ -37,9 +43,7 @@ const OrderSummary = ({ setOrderPhase }) => {
       <h1>Order Summary</h1>
       <h2>Scoops: {orderDetails.totals.scoops}</h2>
       <ul>
-        {scoopItems.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
+        {scoopsList}
       </ul>
 
       {toppingsRender}

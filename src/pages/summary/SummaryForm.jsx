@@ -14,7 +14,7 @@ const SummaryForm = ({ setOrderPhase }) => {
   };
 
   const popover = (
-    <Popover id="terms-popover">
+    <Popover id='terms-popover'>
       <Popover.Body>No ice cream will be delivered</Popover.Body>
     </Popover>
   );
@@ -22,7 +22,7 @@ const SummaryForm = ({ setOrderPhase }) => {
   const checkboxLabel = (
     <span>
       I agree to the{" "}
-      <OverlayTrigger placement="bottom" overlay={popover}>
+      <OverlayTrigger placement='bottom' overlay={popover}>
         <span style={{ color: "blue" }}>Terms and Conditions</span>
       </OverlayTrigger>
     </span>
@@ -30,21 +30,16 @@ const SummaryForm = ({ setOrderPhase }) => {
 
   return (
     <>
-      <Form>
-        <Form.Group controlId="terms-and-conditions">
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId='terms-and-conditions'>
           <Form.Check
-            type="checkbox"
+            type='checkbox'
             label={checkboxLabel}
             onChange={handleTcChange}
           />
         </Form.Group>
 
-        <Button
-          variant="primary"
-          type="submit"
-          disabled={!tcChecked}
-          onClick={handleSubmit}
-        >
+        <Button variant='primary' type='submit' disabled={!tcChecked}>
           Confirm Order
         </Button>
       </Form>

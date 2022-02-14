@@ -17,7 +17,7 @@ describe("Summary form has correct functionality", () => {
       name: /terms and conditions/i,
     });
     const placeOrderButton = screen.getByRole("button", {
-      name: /place order/i,
+      name: /confirm order/i,
     });
 
     expect(termsCheckbox).not.toBeChecked();
@@ -30,7 +30,7 @@ describe("Summary form has correct functionality", () => {
       name: /terms and conditions/i,
     });
     const placeOrderButton = screen.getByRole("button", {
-      name: /place order/i,
+      name: /confirm order/i,
     });
 
     userEvent.click(termsCheckbox);
