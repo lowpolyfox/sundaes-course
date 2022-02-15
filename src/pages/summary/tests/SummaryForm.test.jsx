@@ -71,5 +71,3 @@ describe("terms and conditions popover functionality", () => {
     //expect(nullPopoverAfterInit).not.toBeInTheDocument();
   });
 });
-
-// when using a function that contains a promise, we need to make it async

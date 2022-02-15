@@ -12,8 +12,8 @@ test("golden path: customer flow without errors", async () => {
   userEvent.clear(vanillaInput);
   userEvent.type(vanillaInput, "2");
 
-  // we don't have to await for this element. we already awaited the vanilla one,
-  // and both come from axios requests.
+  // we don't have to await for this element. we already awaited the
+  // vanilla one, and both come from axios requests
   const chocolateInput = screen.getByRole("spinbutton", {
     name: /chocolate/i,
   });
@@ -33,16 +33,16 @@ test("golden path: customer flow without errors", async () => {
 
   // check summary information based on order
   const summaryTitle = screen.getByRole("heading", {
-    level: 1,
     name: /order summary/i,
+    level: 1,
   });
   expect(summaryTitle).toBeInTheDocument();
 
-  // it's good practice to test that our elements display the correct information
-  // based on our bussiness logic.
+  // it's good practice to test that our elements display the
+  // correct information based on our bussiness logic.
   const scoopsHeading = screen.getByRole("heading", {
-    level: 2,
     name: "Scoops: $6.00",
+    level: 2,
   });
   expect(scoopsHeading).toBeInTheDocument();
 
@@ -69,10 +69,17 @@ test("golden path: customer flow without errors", async () => {
   userEvent.click(confirmOrderButton);
 
   // confirm order number on confirmation page
+  const orderLoading = screen.getByText(/loading/i);
+  expect(orderLoading).toBeInTheDocument();
+
   const confirmationPageTitle = await screen.findByRole("heading", {
-    level: 1,
     name: /thank you/i,
+    level: 1,
   });
+  // queryBy* is used when we expect that the element is NOT
+  // on the document
+  const notLoading = screen.queryByText(/loading/i);
+  expect(notLoading).not.toBeInTheDocument();
   expect(confirmationPageTitle).toBeInTheDocument();
 
   // order number equals our mock service worker handler response
@@ -93,8 +100,8 @@ test("golden path: customer flow without errors", async () => {
   const newToppingsTotal = screen.getByText("Toppings total: $0.00");
   expect(newToppingsTotal).toBeInTheDocument();
 
-  // wait for items to render to avoid '...wrapped in act(...)' error 
-  // after tests ends and we return to Order Entry page. 
+  // wait for items to render to avoid '...wrapped in act(...)' error
+  // after tests ends and we return to Order Entry page.
   await screen.findByRole("spinbutton", { name: "Vanilla" });
   await screen.findByRole("spinbutton", { name: "Chocolate" });
 });
