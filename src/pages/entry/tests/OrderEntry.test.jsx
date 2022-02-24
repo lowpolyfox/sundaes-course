@@ -1,7 +1,12 @@
-import { render, screen, waitFor } from "./../../../test-utils/testing-library-utils";
-import OrderEntry from "../OrderEntry";
+import {
+  render,
+  screen,
+  waitFor,
+} from "./../../../test-utils/testing-library-utils";
+import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { server } from "./../../../mocks/server";
+import OrderEntry from "../OrderEntry";
 
 test("handles errors for scoops and toppings routes", async () => {
   server.resetHandlers(
@@ -20,4 +25,24 @@ test("handles errors for scoops and toppings routes", async () => {
 
     expect(alerts).toHaveLength(2);
   });
+});
+
+test("place order button is disabled if no scoops were added", async () => {
+  render(<OrderEntry />);
+
+  const placeOrderButton = screen.getByRole("button", {
+    name: /order sundae/i,
+  });
+  expect(placeOrderButton).toBeDisabled();
+
+  const chocolateInput = await screen.findByRole("spinbutton", {
+    name: /chocolate/i,
+  });
+  userEvent.clear(chocolateInput);
+  userEvent.type(chocolateInput, "1");
+  expect(placeOrderButton).toBeEnabled();
+
+  userEvent.clear(chocolateInput);
+  userEvent.type(chocolateInput, "0");
+  expect(placeOrderButton).toBeDisabled();
 });

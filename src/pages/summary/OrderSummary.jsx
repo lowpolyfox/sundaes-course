@@ -11,10 +11,7 @@ const OrderSummary = ({ setOrderPhase }) => {
     scoopItems.push(`${value} ${key}`);
   }
 
-  scoopsList = scoopItems.map((item) => (
-    <li key={item}>{item}</li>
-  ));
-
+  scoopsList = scoopItems.map((item, index) => <li key={index}>{item}</li>);
 
   let toppingsRender = null;
   if (orderDetails.toppings.size > 0) {
@@ -29,8 +26,8 @@ const OrderSummary = ({ setOrderPhase }) => {
         </h2>
         {toppingItems && (
           <ul>
-            {toppingItems.map((item) => (
-              <li key={item}>{item}</li>
+            {toppingItems.map((item, index) => (
+              <li key={index}>{item}</li>
             ))}
           </ul>
         )}
@@ -42,9 +39,7 @@ const OrderSummary = ({ setOrderPhase }) => {
     <>
       <h1>Order Summary</h1>
       <h2>Scoops: {orderDetails.totals.scoops}</h2>
-      <ul>
-        {scoopsList}
-      </ul>
+      <ul>{scoopsList}</ul>
 
       {toppingsRender}
 

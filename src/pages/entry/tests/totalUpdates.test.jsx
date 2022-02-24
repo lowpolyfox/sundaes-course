@@ -6,7 +6,7 @@ import OrderEntry from "./../OrderEntry";
 
 describe("update subtotals when parameters change", () => {
   test("update scoop subtotal when scoops change", async () => {
-    render(<Options optionType='scoops' />);
+    render(<Options optionType="scoops" />);
 
     // make sure subtotal starts at 0
     const scoopSubtotal = screen.getByText("Scoops total: $", { exact: false });
@@ -32,7 +32,7 @@ describe("update subtotals when parameters change", () => {
   // tick another box, assert subtotal (make sure both are handled)
   // untick one box, check subtotal
   test("update topping subtotal when toppings change", async () => {
-    render(<Options optionType='toppings' />);
+    render(<Options optionType="toppings" />);
 
     const toppingsSubtotal = screen.getByText("Toppings total: $", {
       exact: false,
@@ -69,7 +69,7 @@ describe("grand total updates properly", () => {
       level: 2,
     });
     expect(grandTotal).toHaveTextContent("0.00");
-    
+
     const vanillaInput = await screen.findByRole("spinbutton", {
       name: "Vanilla",
     });
@@ -88,6 +88,8 @@ describe("grand total updates properly", () => {
     const grandTotal = screen.getByRole("heading", {
       name: /grand total: \$/i,
     });
+    expect(grandTotal).toHaveTextContent("0.00");
+
     const hotFudgeInput = await screen.findByRole("checkbox", {
       name: "Hot fudge",
     });
