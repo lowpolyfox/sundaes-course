@@ -37,7 +37,7 @@ export default function ScoopOption({ name, imagePath, updateItemCount }) {
             type="number"
             defaultValue={0}
             onChange={handleChange}
-            className={valid ? null : "is-invalid"}
+            isInvalid={!valid}
           />
         </Col>
       </Form.Group>
