@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useOrderDetails } from "../../contexts/OrderDetails";
+import AlertBanner from "../common/AlertBanner";
 
 const OrderConfirmation = ({ setOrderPhase }) => {
   const [, , resetOrder] = useOrderDetails();
   const [orderNumber, setOrderNumber] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     axios
@@ -12,8 +14,12 @@ const OrderConfirmation = ({ setOrderPhase }) => {
       .then((response) => {
         setOrderNumber(response.data.orderNumber);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => setError(true));
   }, []);
+
+  if (error) {
+    return <AlertBanner message={null} variant={null} />;
+  }
 
   const handleNewOrder = () => {
     resetOrder();
@@ -32,7 +38,7 @@ const OrderConfirmation = ({ setOrderPhase }) => {
       </div>
     );
   } else {
-    return <div>Loading...</div>;
+    return <div>Loading</div>;
   }
 };
 
