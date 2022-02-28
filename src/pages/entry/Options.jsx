@@ -12,7 +12,6 @@ import { formatCurrency } from "./../../utilities";
 export default function Options({ optionType }) {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(false);
-  // this is the custom hook we wrote in contexts
   const [orderDetails, updateItemCount] = useOrderDetails();
 
   useEffect(() => {
